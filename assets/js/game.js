@@ -7,7 +7,7 @@ var fight = function(enemyName) {
         var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
         //Asks the player if they want to fight or skip. If the player wants to fight it runs the code to fight.
-        if (promptFight == "Fight" || promptFight =="fight") {
+        if (promptFight == "FIGHT" || promptFight =="fight") {
 
             enemyHealth -= playerAttack;
             console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
@@ -67,6 +67,15 @@ var startGame = function() {
             enemyHealth = 50;
 
             fight(pickedEnemyName)
+
+            if (i < enemyNames.length - 1 && playerHealth > 0) {
+
+                var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
+
+                if (storeConfirm) {
+                    shop();
+                }
+            }
         }
         else {
             window.alert("You have lost your robot in battle! Game Over!");
@@ -92,6 +101,54 @@ var endGame = function() {
         startGame();
     }
     else {window.alert("Thank you for playing Robot Gladiators! Come back soon!");}
+};
+
+var shop = function() {
+
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+
+    switch (shopOptionPrompt) {
+        case "REFILL":
+        case "refill":
+
+            if (playerMoney >=7) {
+                window.alert("Refillling player's health by 20 for 7 dollars.");
+
+                playerHealth += 20;
+                playerMoney -= 7;
+                break;
+            }
+            else {
+                window.alert("You don't have enough money!");
+            }
+
+        case "UPGRADE":
+        case "upgrade":
+
+            if (playerMoney >=7) {
+                window.alert("Upgrading player's attack by 6 for 7 dollars.");
+
+                playerAttack += 6;
+                playerMoney -= 7;
+                break;
+            }
+            else {
+                window.alert("You don't have enough money!");
+            }
+            
+        case "LEAVE":
+        case "leave":
+
+            window.alert("Leaving the store.");
+            break;
+
+        default:
+            window.alert("You did not pick a valid option. Try again.");
+
+            shop();
+            break;
+    }
+
 };
 
 
