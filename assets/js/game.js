@@ -20,7 +20,7 @@ var fightOrSkip = function() {
         if (confirmSkip) {
             window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
             
-            playerInfo.playerMoney = playerInfo.money - 10;
+            playerInfo.money = playerInfo.money - 10;
             return true;
         }
     }
